@@ -110,11 +110,11 @@ class BuilderTest < ActionView::TestCase
     assert_select "div.show_for strong.label", "Special Label"
   end
 
-  test "show_for#label accepts an attribute name" do
-    store_translations(:en, :show_for => { :user => {:name => "Super User Name!"} }) do
+  test "show_for#label accepts an attribute name - and missing translation" do
+    # store_translations(:en, :show_for => { :user => {:name => "Super User Name!"} }) do
       with_label_for @user, :name
       assert_select "div.show_for strong.label", "Super User Name!"
-    end
+    # end
   end
 
   test "show_for#label accepts html options" do
