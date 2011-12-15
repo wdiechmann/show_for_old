@@ -6,7 +6,7 @@ module ShowFor
       elsif options.key?(:label)
         options.delete(:label)
       elsif text_or_attribute.is_a?(Symbol) and !text_or_attribute.blank?
-        I18n.t( text_or_attribute.to_sym, :scope => :show_for)
+        I18n.t( text_or_attribute.to_sym, :scope => [:show_for,@object.class.to_s.downcase.to_sym])
       else
         human_attribute_name(text_or_attribute)
       end

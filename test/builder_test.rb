@@ -71,7 +71,7 @@ class BuilderTest < ActionView::TestCase
 
   # LABEL
   test "show_for shows a label using the humanized attribute name from model" do
-    store_translations(:en, :show_for => { :name => "Super User Name!" }) do
+    store_translations(:en, :show_for => { :user => {:name => "Super User Name!"} }) do
       with_attribute_for @user, :name
       assert_select "div.show_for p.wrapper strong.label", "Super User Name!"
     end
@@ -111,7 +111,7 @@ class BuilderTest < ActionView::TestCase
   end
 
   test "show_for#label accepts an attribute name" do
-    store_translations(:en, :show_for => { :name => "Super User Name!" }) do
+    store_translations(:en, :show_for => { :user => {:name => "Super User Name!"} }) do
       with_label_for @user, :name
       assert_select "div.show_for strong.label", "Super User Name!"
     end
@@ -123,7 +123,7 @@ class BuilderTest < ActionView::TestCase
   end
   
   test "show_for#label is translated" do
-    store_translations(:en, :show_for => { :name => "User Name" }) do
+    store_translations(:en, :show_for => { :user => { :name => "User Name"} }) do
       with_label_for @user, :name
       assert_select "div.show_for strong.label", "User Name"
     end
@@ -456,7 +456,7 @@ class BuilderTest < ActionView::TestCase
 
   # ATTRIBUTES
   test "show_for attributes wraps each attribute with a label and content" do
-    store_translations(:en, :show_for => { :name => "Super User Name!", :email=>"Email" }) do
+    store_translations(:en, :show_for => { :user => {:name => "Super User Name!", :email=>"Email"} }) do
       with_attributes_for @user, :name, :email
       assert_select "div.show_for p.user_name.wrapper", /ShowFor/
       assert_select "p.user_name strong.label", "Super User Name!"
